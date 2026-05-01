@@ -1,11 +1,11 @@
-# Airflow
+
 logs/
 plugins/
 config/
 
-# Variáveis de ambiente (segurança!)
+
 .env
 
-# Python
+
 __pycache__/
 *.pyc
