@@ -23,3 +23,4 @@ with DAG(
     tarefa_1 >> [tarefa_2, tarefa_3]
     tarefa_3 >> tarefa_4
 
+
