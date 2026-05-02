@@ -5,9 +5,9 @@ from urllib.parse import quote
 from dotenv import load_dotenv
 
 
-def get_datas():
+def get_datas(data_inicio_str: str):
     """Retorna as datas de início e fim formatadas"""
-    data_inicio = datetime.today()
+    data_inicio = datetime.strptime(data_inicio_str, '%Y-%m-%d')
     data_fim = data_inicio - timedelta(days=7)
     
     return data_inicio.strftime('%Y-%m-%d'), data_fim.strftime('%Y-%m-%d')
@@ -27,9 +27,9 @@ def get_url(data_inicio_str: str, data_fim_str: str) -> str:
     )
 
 
-def extrair_clima() -> None:
+def extrair_clima(data_inicio_str: str) -> None:
     """Extrai dados de clima e salva em CSV"""
-    data_inicio_str, data_fim_str = get_datas()
+    data_inicio_str, data_fim_str = get_datas(data_inicio_str)
     url = get_url(data_inicio_str, data_fim_str)
     
     df = pd.read_csv(url)
@@ -45,4 +45,4 @@ def extrair_clima() -> None:
 
 
 if __name__ == "__main__":
-    extrair_clima()
+    extrair_clima(datetime.today().strftime('%Y-%m-%d'))
