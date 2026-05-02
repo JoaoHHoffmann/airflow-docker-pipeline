@@ -25,3 +25,11 @@ url = (
 
 
 df = pd.read_csv(url)
+
+file_path = f'data/raw/semana_{data_inicio_str}/'
+os.makedirs(file_path, exist_ok=True)
+
+df.to_csv(file_path + 'dados_brutos.csv', index=False)
+df[['datetime', 'tempmin', 'tempmax', 'temp']].to_csv(file_path + 'temperaturas.csv', index=False)
+df[['datetime', 'description', 'icon']].to_csv(file_path + 'condicoes.csv', index=False)
+
