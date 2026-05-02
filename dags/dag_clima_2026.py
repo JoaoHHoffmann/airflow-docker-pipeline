@@ -1,12 +1,14 @@
-from datetime import datetime, timedelta
+from datetime import datetime
+import pendulum
 from airflow.models import DAG
 from airflow.providers.standard.operators.empty import EmptyOperator
 from airflow.providers.standard.operators.bash import BashOperator
 
+start_date=pendulum.datetime(2026, 1, 1, tz="UTC"),
 
 with DAG(
     dag_id="dag_clima_2026",
-    start_date=datetime(2026, 1, 1),
+    start_date=start_date,
     schedule="@daily", 
 ) as dag:
     
