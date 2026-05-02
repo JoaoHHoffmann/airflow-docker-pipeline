@@ -34,7 +34,7 @@ def extrair_clima() -> None:
     
     df = pd.read_csv(url)
     
-    file_path = f'data/raw/semana_{data_inicio_str}/'
+    file_path = f'/opt/airflow/data/raw/semana_{data_inicio_str}/'
     os.makedirs(file_path, exist_ok=True)
     
     df.to_csv(file_path + 'dados_brutos.csv', index=False)
