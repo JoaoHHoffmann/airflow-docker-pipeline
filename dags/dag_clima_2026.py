@@ -1,0 +1,23 @@
+from datetime import datetime, timedelta
+from airflow.models import DAG
+from airflow.providers.standard.operators.empty import EmptyOperator
+from airflow.providers.standard.operators.bash import BashOperator
+
+
+with DAG(
+    dag_id="dag_clima_2026",
+    start_date=datetime(2026, 1, 1),
+    schedule="@daily", 
+) as dag:
+    
+    tarefa_1 = EmptyOperator(task_id="tarefa_1")
+    tarefa_2 = EmptyOperator(task_id="tarefa_2")
+    tarefa_3 = EmptyOperator(task_id="tarefa_3")
+    tarefa_4 = BashOperator(
+        task_id="cria_pasta",
+        bash_command="mkdir -p data/raw/semana_{{ ds}}"
+    )
+
+    tarefa_1 >> [tarefa_2, tarefa_3]
+    tarefa_3 >> tarefa_4
+
